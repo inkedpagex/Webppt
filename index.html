@@ -4,22 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Media in India | Platform Reach Analysis</title>
+    <title>Social Media in India | Presentation Deck</title>
+    <!-- SEO Best Practices -->
+    <meta name="description"
+        content="A comprehensive presentation on India's social media reach and growth trends (2020-2025).">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Gochi+Hand&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;600;700;800&display=swap"
         rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
         :root {
             --primary: #0f172a;
-            --accent-blue: #3b82f6;
-            --accent-pink: #E1306C;
-            --accent-green: #25D366;
-            --accent-yellow: #FFFC00;
-            --accent-facebook: #1877F2;
-            --bg-canvas: #ffffff;
-            --text-main: #1e293b;
-            --header-height: 80px;
+            --accent: #2563eb;
+            --bg: #ffffff;
+            --slide-bg: #ffffff;
+            --text: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --whatsapp: #25D366;
+            --instagram: #E1306C;
+            --facebook: #1877F2;
+            --snapchat: #FFFC00;
         }
 
         * {
@@ -28,729 +38,737 @@
             padding: 0;
         }
 
-        body {
-            background-color: var(--bg-canvas);
-            background-image: radial-gradient(#e2e8f0 1.5px, transparent 1.5px);
-            background-size: 50px 50px;
-            font-family: 'Outfit', sans-serif;
-            color: var(--text-main);
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-        }
-
-        #landing {
-            position: fixed;
-            top: 0;
-            left: 0;
+        body,
+        html {
             width: 100%;
             height: 100%;
-            background: white;
-            z-index: 5000;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: #ffffff;
+        }
+
+        /* Slide Container */
+        #deck {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .slide {
+            flex: 0 0 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            pointer-events: auto;
+            padding: 60px;
+            background: var(--slide-bg);
+            position: relative;
+            overflow: hidden;
         }
 
-        #landing.hidden {
-            opacity: 0;
-            transform: scale(1.1);
-            pointer-events: none;
-        }
-
-        .fs-icon-btn {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            background: white;
-            border: 2px solid var(--primary);
-            width: 55px;
-            height: 55px;
-            border-radius: 14px;
+        /* Navigation UI */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 4px 4px 0 var(--primary);
-            transition: 0.2s;
-            z-index: 6000;
-        }
-
-        .fs-icon-btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 var(--primary);
-        }
-
-        #landing h1 {
-            font-size: clamp(3rem, 7vw, 5rem);
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -3px;
-            margin-bottom: 15px;
-            text-align: center;
-            line-height: 1;
-        }
-
-        .landing-subtitle {
-            font-family: 'Gochi Hand', cursive;
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
-            color: var(--accent-blue);
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .landing-description {
-            font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-            color: #64748b;
-            margin-bottom: 40px;
-            text-align: center;
-            max-width: 800px;
-            padding: 0 20px;
-        }
-
-        .start-btn {
-            background: var(--primary);
-            color: white;
-            padding: 22px 65px;
+            gap: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
             border-radius: 100px;
-            font-size: 1.8rem;
-            font-weight: 700;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 15px 45px rgba(15, 23, 42, 0.2);
-            transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            z-index: 5500;
-        }
-
-        .start-btn:hover {
-            background: var(--accent-blue);
-            transform: translateY(-5px) scale(1.05);
-        }
-
-        header {
-            height: var(--header-height);
-            padding: 0 50px;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            opacity: 0;
-            transition: 0.8s ease 0.5s;
-            z-index: 2000;
-            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
         }
 
-        header.visible {
-            opacity: 1;
-        }
-
-        .header-btn {
-            background: white;
-            border: 2px solid var(--primary);
-            padding: 6px 18px;
-            border-radius: 12px;
-            font-family: 'Gochi Hand', cursive;
-            font-size: 1.2rem;
+        .nav-btn {
+            background: none;
+            border: none;
             cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: 0.2s;
-            box-shadow: 4px 4px 0 var(--primary);
+            color: var(--primary);
         }
 
-        .header-btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 var(--primary);
+        .nav-btn:hover:not(:disabled) {
+            background: var(--border);
+            transform: scale(1.1);
         }
 
-        main {
-            flex: 1;
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .slide-counter {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .top-tools {
+            position: fixed;
+            top: 30px;
+            right: 30px;
             display: flex;
-            width: 100%;
-            height: calc(100vh - var(--header-height));
-            opacity: 0;
-            transition: 1s ease 0.8s;
-            overflow: hidden;
-            position: relative;
+            gap: 15px;
+            z-index: 1000;
         }
 
-        main.visible {
-            opacity: 1;
-        }
-
-        .content-slot {
-            flex: 1;
+        .tool-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 40px;
-            position: relative;
-            transition: all 0.8s ease;
+            gap: 8px;
+            transition: 0.2s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
 
-        .content-slot.hidden {
-            opacity: 0;
-            pointer-events: none;
-            width: 0;
-            flex: 0;
-            padding: 0;
-        }
-
-        .visual-slot {
-            width: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            background: #f8fafc;
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .visual-slot.active {
-            width: 50%;
-            opacity: 1;
-            visibility: visible;
-            border-left: 2px solid #e2e8f0;
-            padding: 40px 20px;
-        }
-
-        .visual-slot.full {
-            width: 100%;
-            opacity: 1;
-            visibility: visible;
-            border-left: none;
-            background: transparent;
-            padding: 40px 20px;
-        }
-
-        .premium-card {
-            position: absolute;
-            width: 85%;
-            max-width: 800px;
-            max-height: 80%;
+        .tool-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
             background: white;
-            border: 6px solid var(--primary);
-            border-radius: 40px;
-            padding: 45px;
-            box-shadow: 25px 25px 0px rgba(15, 23, 42, 0.04);
-            opacity: 0;
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-            transform: scale(0.92) translateY(20px);
-            transition: all 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .premium-card.active {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-            pointer-events: all;
-        }
-
-        .premium-card h3 {
-            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+        /* Content Styling */
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 800;
-            letter-spacing: -2px;
             color: var(--primary);
             line-height: 1.1;
-            margin-bottom: 25px;
-        }
-
-        .premium-list {
-            list-style: none;
-        }
-
-        .premium-list li {
-            font-size: clamp(1.2rem, 1.8vw, 1.6rem);
-            color: #334155;
-            margin: 15px 0;
-            display: flex;
-            align-items: start;
-            gap: 15px;
-            line-height: 1.3;
-        }
-
-        .premium-list li::before {
-            content: '➜';
-            color: var(--accent-blue);
-            font-weight: bold;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        #s2 li::before {
-            color: var(--accent-green);
-        }
-
-        #s3 li::before {
-            color: var(--accent-pink);
-        }
-
-        #s4 li::before {
-            color: var(--accent-facebook);
-        }
-
-        #s5 li::before {
-            color: var(--accent-yellow);
-        }
-
-        .share-badge {
-            background: var(--accent-blue);
-            color: white;
-            padding: 6px 20px;
-            border-radius: 100px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 12px;
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.15);
-        }
-
-        .chart-main-title {
-            font-weight: 800;
-            font-size: clamp(1.4rem, 2.5vw, 2.22rem);
-            color: var(--primary);
-            margin-bottom: 5px;
-            text-align: center;
-            max-width: 90%;
-            transition: 0.3s;
-        }
-
-        .chart-subtitle {
-            font-size: 1.2rem;
-            color: #64748b;
-            margin-bottom: 25px;
-            text-align: center;
-            transition: 0.3s;
-            max-width: 800px;
-        }
-
-
-
-        #chart-wrap {
-            width: 90%;
-            max-width: 600px;
-            aspect-ratio: 1.4;
             margin-bottom: 20px;
-            position: relative;
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
-            transition: all 0.8s ease;
-        }
-
-        .visual-slot.full #chart-wrap {
-            max-width: 800px;
-            aspect-ratio: 1.8;
-        }
-
-        #bar-canvas {
-            width: 100%;
-            height: 100%;
-            cursor: crosshair;
-        }
-
-        .chart-note {
-            font-size: 0.9rem;
-            color: #94a3b8;
             text-align: center;
-            max-width: 80%;
-            line-height: 1.4;
-            margin-top: 10px;
-            transition: 0.3s;
+            letter-spacing: -0.03em;
         }
 
-        #tooltip {
-            position: fixed;
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: -0.01em;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 2vw, 1.8rem);
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .bullet-list {
+            list-style: none;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .bullet-list li {
+            font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+            color: var(--text);
+            line-height: 1.4;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+
+        .active .bullet-list li {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .bullet-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        .chart-container {
+            width: 90%;
+            max-width: 1000px;
+            height: 50%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .source-footer {
+            position: absolute;
+            bottom: 80px;
+            left: 60px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            max-width: 600px;
+        }
+
+        .source-footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .source-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Specific Slide Themes */
+        .cover-slide {
+            background: #ffffff;
+        }
+
+        .platform-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 100px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .platform-slide h3 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide.active>* {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* CTA Button */
+        .cta-btn {
+            background: var(--primary);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 100px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.2);
+            margin-top: 20px;
+        }
+
+        .cta-btn:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3);
+        }
+
+        /* Icons */
+        .icon-svg {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+        }
+
+        /* Platform-Specific Icons & Colors */
+        .bg-whatsapp {
+            background-color: var(--whatsapp);
+        }
+
+        .bg-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .bg-facebook {
+            background-color: var(--facebook);
+        }
+
+        .bg-snapchat {
+            background-color: #ffd900;
+            color: #000 !important;
+        }
+
+        /* Fullscreen styles */
+        body:-webkit-full-screen .controls {
+            bottom: 50px;
+        }
+
+        body:-moz-full-screen .controls {
+            bottom: 50px;
+        }
+
+        body:fullscreen .controls {
+            bottom: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .bullet-list li {
+                font-size: 1.1rem;
+            }
+
+            .chart-container {
+                height: 40%;
+            }
+        }
+
+        /* Custom External Tooltip */
+        #chartjs-tooltip {
+            opacity: 0;
+            position: absolute;
             background: rgba(15, 23, 42, 0.95);
             color: white;
-            padding: 12px 18px;
-            border-radius: 12px;
-            font-size: 0.95rem;
+            border-radius: 16px;
             pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.2s;
-            z-index: 7000;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            max-width: 250px;
+            transition: all .1s ease;
+            transform: translate(-50%, -100%);
+            padding: 15px 20px;
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            z-index: 2000;
+            min-width: 160px;
         }
 
-        #tooltip b {
-            display: block;
+        #chartjs-tooltip .tooltip-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
             font-size: 1.1rem;
-            margin-bottom: 4px;
-            color: var(--accent-blue);
+            margin-bottom: 5px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 5px;
         }
 
-        #tooltip span {
-            display: block;
-            font-size: 0.85rem;
-            color: #cbd5e1;
-            font-style: italic;
+        #chartjs-tooltip .tooltip-body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        @media (max-width: 1000px) {
-            .visual-slot.active {
-                width: 0;
-                display: none;
-            }
-
-            .premium-card {
-                width: 95%;
-                padding: 25px;
-            }
+        #chartjs-tooltip .tooltip-value {
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
         }
     </style>
 </head>
 
 <body>
 
-    <div id="landing">
-        <button class="fs-icon-btn" onclick="toggleFS()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <path
-                    d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+    <div id="chartjs-tooltip"></div>
+
+    <div class="top-tools">
+        <button class="tool-btn" id="fsBtn" title="Toggle Fullscreen">
+            <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
+                </path>
             </svg>
+            Fullscreen
         </button>
-        <h1 id="landing-title">Social Media <br> Reach in India</h1>
-        <div class="landing-subtitle">“Traditional Networks vs Modern Short-Form Platforms”</div>
-        <div class="landing-description">“A comprehensive analysis based on usage reach among internet users as of
-            2025/2026.”</div>
-        <button class="start-btn" onclick="start()">Explore Data</button>
     </div>
 
-    <header id="header">
-        <button class="header-btn" onclick="location.reload()">Reset</button>
-    </header>
+    <div id="deck">
+        <!-- Slide 1: Cover -->
+        <section class="slide cover-slide" id="slide-1">
+            <h1>Social Media Reach in India</h1>
+            <p class="subtitle">Traditional Networks vs Modern Short-Form Platforms</p>
+            <button class="cta-btn" onclick="goToSlide(1)">Explore Data</button>
+        </section>
 
-    <div id="tooltip"></div>
 
-    <main id="stage">
-        <div class="content-slot" id="card-area">
-            <div class="premium-card" id="s1"></div>
-
-            <div class="premium-card" id="s2">
-                <div class="share-badge">80.8% Reach</div>
-                <h3>WhatsApp</h3>
-                <ul class="premium-list">
-                    <li>Dominant Messaging Platform</li>
-                    <li>Critical Tool for SMBs</li>
-                    <li>Integrated Payments Gateway</li>
-                    <li>High Retention & Daily Use</li>
-                </ul>
+        <!-- Slide 4: Platform Reach Chart -->
+        <section class="slide" id="slide-4">
+            <h2>Social Media Platform Usage in India (2025)</h2>
+            <div class="chart-container">
+                <canvas id="reachChart"></canvas>
             </div>
-
-            <div class="premium-card" id="s3">
-                <div class="share-badge">77.9% Reach</div>
-                <h3>Instagram</h3>
-                <ul class="premium-list">
-                    <li>Leading Platform for Discovery</li>
-                    <li>Fueled by Reel-First Content</li>
-                    <li>Powerhouse for Influencer ROI</li>
-                    <li>Hyper-Growth in Tier-2 Cities</li>
-                </ul>
+            <div class="source-footer">
+                Note: Percentages represent reach among internet users; users may use multiple platforms.<br>
+                Source: <a href="https://datareportal.com/reports/digital-2025-india" target="_blank">DataReportal —
+                    Digital 2025 India Report</a>
             </div>
+        </section>
 
-            <div class="premium-card" id="s4">
-                <div class="share-badge">67.8% Reach</div>
-                <h3>Facebook</h3>
-                <ul class="premium-list">
-                    <li>Legacy Networking Giant</li>
-                    <li>Mature Market Monetization</li>
-                    <li>Strong Video Consumption Hub</li>
-                    <li>Essential for Local Communities</li>
-                </ul>
-            </div>
 
-            <div class="premium-card" id="s5">
-                <div class="share-badge">46.9% Reach</div>
-                <h3>Snapchat</h3>
-                <ul class="premium-list">
-                    <li>Youngest Demographic Appeal</li>
-                    <li>High Augmented Reality Usage</li>
-                    <li>Visual Search-First Intent</li>
-                    <li>Strong Peer-to-Peer Privacy</li>
-                </ul>
-            </div>
 
-            <div class="premium-card" id="s6">
-                <div class="share-badge">Diverse Longtail</div>
-                <h3>Other Platforms</h3>
-                <ul class="premium-list">
-                    <li><b>Telegram:</b> Large Group Broadcasting</li>
-                    <li><b>LinkedIn:</b> Professional Networking</li>
-                    <li><b>Threads:</b> Text-Based Conversations</li>
-                    <li><b>Local Apps:</b> Regional Content Focus</li>
-                </ul>
+        <!-- Slide 9: Growth Trend -->
+        <section class="slide" id="slide-9">
+            <h2>India Social Media Users — Growth (2020–2025)</h2>
+            <div class="chart-container">
+                <canvas id="growthChart"></canvas>
             </div>
+            <div class="source-footer">
+                Source: <a href="https://datareportal.com/reports" target="_blank">DataReportal Digital India Reports
+                    (2020–2025)</a>
+            </div>
+        </section>
 
-            <div class="premium-card" id="s8">
-                <h3>Future Predictions</h3>
-                <ul class="premium-list">
-                    <li>Hyper-Short-Form Video Streams</li>
-                    <li>Generative AI Content Systems</li>
-                    <li>Metaverse & AR Immersion</li>
-                    <li>Platform Consolidation Trends</li>
-                </ul>
-            </div>
+        <!-- Slide 10: Conclusion -->
+        <section class="slide" id="slide-10">
+            <h2>Key Conclusions</h2>
+            <p class="subtitle" style="margin-bottom: 30px;">“If we combine both graphs, we can clearly understand a few
+                important points.”</p>
+            <ul class="bullet-list">
+                <li style="transition-delay: 0.1s">“WhatsApp has the highest reach in India, which shows how important
+                    it is for daily communication.”</li>
+                <li style="transition-delay: 0.2s">“Instagram shows strong adoption, especially among younger users.”
+                </li>
+                <li style="transition-delay: 0.3s">“The total number of social media users in India has increased
+                    steadily over time.”</li>
+                <li style="transition-delay: 0.4s">“Most users do not rely on just one platform — they use multiple
+                    platforms.”</li>
+                <li style="transition-delay: 0.5s">“Overall, the data shows that social media has become a regular and
+                    essential part of everyday life in India.”</li>
+            </ul>
+        </section>
 
-            <div class="premium-card" id="s9">
-                <h3>Questions?</h3>
-                <p
-                    style="font-family: 'Gochi Hand', cursive; font-size: 3rem; color: var(--accent-blue); text-align: center; margin-top: 40px;">
-                    We welcome your insights and questions.
-                </p>
-            </div>
+        <!-- Slide 11: Questions -->
+        <section class="slide" id="slide-11">
+            <h1>Questions?</h1>
+            <p class="subtitle">“That’s the main idea I wanted to explain using these graphs.<br>
+                If anyone has any questions or wants to discuss this further, I’ll be happy to answer.”</p>
+        </section>
 
-            <div class="premium-card" id="s10">
-                <h3>Thank You</h3>
-                <p
-                    style="font-family: 'Gochi Hand', cursive; font-size: 3.5rem; color: var(--accent-green); text-align: center; margin: 40px 0 10px;">
-                    “Engagement, not just Reach.”
-                </p>
-                <div
-                    style="text-align: center; font-family: 'Gochi Hand', cursive; color: #64748b; font-size: 1.8rem; margin-bottom: 40px;">
-                    “India’s digital ecosystem is leading the global trend.”
-                </div>
-                <div style="text-align: center; color: #94a3b8; font-size: 1.4rem;">Social Media Market Report</div>
-            </div>
-        </div>
+        <!-- Slide 12: Thank You -->
+        <section class="slide" id="slide-12">
+            <h1>Thank You</h1>
+            <p class="subtitle">“Engagement, not just reach.”</p>
+            <p style="color: var(--text-muted); font-weight: 600;">Social Media Market Report</p>
+        </section>
+    </div>
 
-        <div class="visual-slot" id="visual-dashboard">
-            <div id="c-title" class="chart-main-title">Social Media Platform Usage in India (2025)</div>
+    <!-- Navigation Overlay -->
+    <!-- Navigation Overlay -->
 
-            <div id="c-subtitle" class="chart-subtitle">% of Internet Users</div>
-            <div id="chart-wrap">
-                <canvas id="bar-canvas" width="800" height="500"></canvas>
-            </div>
-            <div id="c-note" class="chart-note">
-                Note: Percentages represent platform reach among internet users. Users may use multiple platforms.
-            </div>
-        </div>
-    </main>
 
     <script>
-        let step = 1;
-        const totalSteps = 11;
+        let currentSlide = 0;
+        const totalSlides = document.querySelectorAll('.slide').length;
+        const deck = document.getElementById('deck');
+        const fsBtn = document.getElementById('fsBtn');
 
-        const platforms = [
-            { name: "WhatsApp", value: 80.8, color: "#25D366", logo: "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg", desc: "Primary highway for messaging and local P2P commerce." },
-            { name: "Instagram", value: 77.9, color: "#E1306C", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg", desc: "Hub for visual storytelling, Reels, and influencer economy.", isGradient: true },
-            { name: "Facebook", value: 67.8, color: "#1877F2", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg", desc: "Legacy giant for community groups and long-form video." },
-            { name: "Snapchat", value: 46.9, color: "#FFFC00", logo: "https://upload.wikimedia.org/wikipedia/en/a/ad/Snapchat_logo.svg", desc: "Core engagement driver for Gen Z via AR lenses and Streaks." }
-        ];
+        function updateDeck() {
+            deck.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-        const logoImages = {};
-        platforms.forEach(p => {
-            const img = new Image(); img.src = p.logo;
-            img.onload = () => { logoImages[p.name] = img; draw(); };
-        });
+            // Show fullscreen button only on the first slide
+            fsBtn.style.display = currentSlide === 0 ? 'flex' : 'none';
 
-        let animationProgress = 0;
-        const animationSpeed = 0.04;
-        const barRegions = [];
-        let introActive = true;
-
-        function start() {
-            introActive = false;
-            step = 1;
-            document.getElementById('landing').classList.add('hidden');
-            document.getElementById('header').classList.add('visible');
-            document.getElementById('stage').classList.add('visible');
-            render();
-        }
-
-        function toggleFS() {
-            if (!document.fullscreenElement) document.documentElement.requestFullscreen();
-            else if (document.exitFullscreen) document.exitFullscreen();
-        }
-
-        function render() {
-            const dashboard = document.getElementById('visual-dashboard');
-            const cardArea = document.getElementById('card-area');
-            const cTitle = document.getElementById('c-title');
-            const cSubtitle = document.getElementById('c-subtitle');
-            const cNote = document.getElementById('c-note');
-
-            document.querySelectorAll('.premium-card').forEach((c, i) => {
-                let cardStep;
-                if (i === 0) cardStep = 1; else if (i <= 5) cardStep = i + 1; else cardStep = i + 2;
-                c.classList.toggle('active', cardStep === step);
+            // Trigger animation classes
+            document.querySelectorAll('.slide').forEach((s, i) => {
+                s.classList.toggle('active', i === currentSlide);
             });
 
-            if (step === 1) {
-                cardArea.classList.add('hidden');
-                dashboard.classList.add('full');
-                dashboard.classList.add('active');
-                cTitle.innerText = "Important Clarification";
-                cSubtitle.classList.add('hidden');
-                cNote.classList.add('hidden');
-            } else if (step === 7) {
-                cardArea.classList.add('hidden');
-                dashboard.classList.add('full');
-                dashboard.classList.add('active');
-                dashboard.classList.add('active');
-                cTitle.innerText = "Social Media Platform Usage in India (2025)";
-                cSubtitle.classList.remove('hidden');
-                cNote.classList.remove('hidden');
-            } else {
-                cardArea.classList.remove('hidden');
-                dashboard.classList.remove('full');
-                cSubtitle.classList.remove('hidden');
-                cNote.classList.remove('hidden');
-                cTitle.innerText = "Social Media Platform Usage in India (2025)";
-                const isChartSideVisible = (step >= 2 && step <= 5);
-                dashboard.classList.toggle('active', isChartSideVisible);
-            }
-
-            if (dashboard.classList.contains('active')) {
-                animationProgress = 0;
-                animate();
-            }
+            // Init charts if relevant slide is reached
+            if (currentSlide === 1) initReachChart();
+            if (currentSlide === 2) initGrowthChart();
         }
 
-        function animate() {
-            if (animationProgress < 1) {
-                animationProgress += animationSpeed;
-                draw();
-                requestAnimationFrame(animate);
-            } else { animationProgress = 1; draw(); }
-        }
+        const rolledPoints = new Set();
+        const platformLogos = {
+            'WhatsApp': `<svg style="width:22px;height:22px;fill:#25D366" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .011 5.403.008 12.039a11.82 11.82 0 001.532 5.795L0 24l6.363-1.67a11.806 11.806 0 005.683 1.448h.005c6.637 0 12.04-5.403 12.042-12.04a11.83 11.83 0 00-3.417-8.467z"/></svg>`,
+            'Instagram': `<svg style="width:22px;height:22px;fill:#E1306C" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07M12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.981 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.351-.2 6.77-2.618 6.97-6.98.058-1.28.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.2-4.352-2.62-6.78-6.98-6.981C15.667.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>`,
+            'Facebook': `<svg style="width:22px;height:22px;fill:#1877F2" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>`,
+            'Snapchat': `<svg style="width:22px;height:22px;fill:#FFFC00;stroke:#000;stroke-width:1" viewBox="0 0 24 24"><path d="M12 3c-1.74 0-3.11.39-4.22 1.15-.46.31-.83.74-1.07 1.26-.2.4-.29.86-.29 1.35 0 .28.04.53.1.75l.13.43c.12.3.26.54.43.7-.42.27-.88.48-1.32.65-.63.25-1.39.42-2.14.65-.4.13-.53.33-.53.5 0 .27.3.5.86.72.19.07.41.14.65.19 1.05.23 1.1-.15 1.57-.15.11 0 .2.02.26.04.14.04.1.2.04.38-.1.35-.41 1.25-.41 1.84 0 .93.38 1.47 1.15 1.47.16 0 .34-.02.51-.06.27-.08.57-.16.9-.22.18-.04.37-.06.56-.06.26 0 .58.05.9.15.54.16 1.1.48 1.63.48.56 0 1.13-.33 1.64-.49.3-.1.62-.15.89-.15.2 0 .38.03.56.07.33.07.62.15.9.22.17.04.34.06.51.06.77 0 1.15-.54 1.15-1.47 0-.59-.31-1.49-.41-1.84-.06-.18-.1-.34.04-.38.06-.02.15-.04.26-.04.47 0 .52.38 1.57.15.24-.05.46-.12.65-.19.56-.22.86-.45.86-.72 0-.17-.13-.37-.53-.5-.75-.23-1.51-.4-2.14-.65-.44-.17-.9-.38-1.32-.65.17-.16.31-.4.43-.7l.13-.43c.06-.22.1-.47.1-.75 0-.49-.09-.95-.29-1.35-.24-.52-.61-.95-1.07-1.26C15.11 3.39 13.74 3 12 3z"/></svg>`
+        };
 
-        function draw() {
-            const canvas = document.getElementById('bar-canvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            const w = canvas.width; h = canvas.height;
-            const padding = 70;
-            const chartW = w - (padding * 2);
-            const chartH = h - (padding * 2);
+        // External Tooltip Handler with Roll Animation
+        const externalTooltipHandler = (context, suffix = "") => {
+            const { chart, tooltip } = context;
+            const tooltipEl = document.getElementById('chartjs-tooltip');
 
-            ctx.clearRect(0, 0, w, h);
-            barRegions.length = 0;
-
-            const isClarification = (step === 1);
-
-            ctx.beginPath();
-            ctx.strokeStyle = "#000000";
-            ctx.lineWidth = 3;
-            ctx.moveTo(padding, padding);
-            ctx.lineTo(padding, h - padding);
-            ctx.lineTo(w - padding, h - padding);
-            ctx.stroke();
-
-            ctx.fillStyle = "#94a3b8";
-            ctx.font = "14px Outfit";
-            ctx.textAlign = "right";
-            for (let i = 0; i <= 100; i += 20) {
-                const y = h - padding - (i / 100) * chartH;
-                ctx.fillText(i + "%", padding - 15, y + 5);
-                ctx.beginPath();
-                ctx.strokeStyle = "#f1f5f9";
-                ctx.moveTo(padding, y);
-                ctx.lineTo(w - padding, y);
-                ctx.stroke();
+            if (tooltip.opacity === 0) {
+                tooltipEl.style.opacity = 0;
+                return;
             }
 
-            const barWidth = (chartW / 4) * 0.6;
-            const gap = (chartW / 4) * 0.4;
-            const sampleHeights = [70, 60, 50, 40];
+            if (tooltip.body) {
+                const title = tooltip.title || [];
+                const dataPoint = tooltip.dataPoints[0];
+                const pointKey = `${chart.canvas.id}-${dataPoint.index}`;
+                const targetValue = parseFloat(dataPoint.parsed.y);
+                const alreadyRolled = rolledPoints.has(pointKey);
 
-            platforms.forEach((p, i) => {
-                const isCurrent = (step === (i + 2));
-                const isFull = (step === 7);
-                const isActive = isCurrent || isFull || isClarification;
+                const platformName = dataPoint.label;
+                const logo = platformLogos[platformName] || '';
 
-                const valH = (p.value / 100) * chartH * animationProgress;
-                const x = padding + (i * (barWidth + gap)) + (gap / 2);
-                const y = h - padding - valH;
+                let innerHtml = `<div class="tooltip-title" style="display:flex;align-items:center;gap:10px">
+                    ${logo} <span>${title[0]}</span>
+                </div>`;
+                innerHtml += '<div class="tooltip-body">';
 
-                barRegions.push({ x, y, w: barWidth, h: valH, data: p });
-
-                ctx.save();
-
-                // Creative Styling: Shadow and Depth
-                ctx.shadowColor = 'rgba(0,0,0,0.1)';
-                ctx.shadowBlur = 15;
-                ctx.shadowOffsetX = 5;
-                ctx.shadowOffsetY = 5;
-
-                if (p.isGradient) {
-                    const grad = ctx.createLinearGradient(x, y, x, h - padding);
-                    grad.addColorStop(0, "#833ab4"); grad.addColorStop(0.5, "#fd1d1d"); grad.addColorStop(1, "#fcb045");
-                    ctx.fillStyle = grad;
+                if (alreadyRolled) {
+                    const displayValue = targetValue % 1 === 0 ? Math.floor(targetValue) : targetValue.toFixed(1);
+                    innerHtml += `<span class="tooltip-value">${displayValue}${suffix}</span>`;
                 } else {
-                    ctx.fillStyle = p.color;
+                    innerHtml += `<span class="tooltip-value" id="rolling-value">0${suffix}</span>`;
                 }
+                innerHtml += '</div>';
 
-                if (!isActive) ctx.globalAlpha = 0.15;
+                tooltipEl.innerHTML = innerHtml;
 
-                // Draw Bar
-                ctx.fillRect(x, y, barWidth, valH);
-                ctx.strokeStyle = "#000000";
-                ctx.lineWidth = 3;
-                ctx.strokeRect(x, y, barWidth, valH);
+                // Position the tooltip
+                const position = chart.canvas.getBoundingClientRect();
+                tooltipEl.style.opacity = 1;
+                tooltipEl.style.left = position.left + window.pageXOffset + tooltip.caretX + 'px';
+                tooltipEl.style.top = position.top + window.pageYOffset + tooltip.caretY + 'px';
 
-                // Inner highlight for depth
-                ctx.fillStyle = 'rgba(255,255,255,0.15)';
-                ctx.fillRect(x + 5, y + 5, 8, valH - 10);
+                if (!alreadyRolled) {
+                    // Roll animation
+                    const valueEl = document.getElementById('rolling-value');
+                    const duration = 400;
+                    const startTime = performance.now();
 
-                ctx.restore();
+                    function animateValue(now) {
+                        const elapsed = now - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const current = progress * targetValue;
 
-                if (isActive) {
-                    ctx.fillStyle = "#000000";
-                    ctx.font = "700 24px Outfit";
-                    ctx.textAlign = "center";
-                    ctx.fillText(p.value + "%", x + (barWidth / 2), y - 15);
-                }
+                        if (targetValue % 1 === 0) {
+                            valueEl.innerText = Math.floor(current) + suffix;
+                        } else {
+                            valueEl.innerText = current.toFixed(1) + suffix;
+                        }
 
-                // Logos and Labels
-                const logo = logoImages[p.name];
-                const logoSize = 34;
-                if (logo) ctx.drawImage(logo, x + (barWidth / 2) - logoSize / 2, h - padding + 35, logoSize, logoSize);
-
-                ctx.fillStyle = isActive ? "#000000" : "#94a3b8";
-                ctx.font = isActive ? "700 16px Outfit" : "14px Outfit";
-                ctx.textAlign = "center";
-                ctx.fillText(p.name, x + (barWidth / 2), h - padding + 25);
-            });
-        }
-
-        function handleMouseMove(e) {
-            if (step === 1) return;
-            const canvas = document.getElementById('bar-canvas');
-            const rect = canvas.getBoundingClientRect();
-            const mouseX = (e.clientX - rect.left) * (canvas.width / rect.width);
-            const mouseY = (e.clientY - rect.top) * (canvas.height / rect.height);
-            let found = false;
-            const tooltip = document.getElementById('tooltip');
-            for (const region of barRegions) {
-                if (mouseX >= region.x && mouseX <= region.x + region.w && mouseY >= region.y && mouseY <= region.y + region.h) {
-                    tooltip.style.opacity = '1'; tooltip.style.left = e.clientX + 15 + 'px'; tooltip.style.top = e.clientY + 15 + 'px';
-                    tooltip.innerHTML = `<b>${region.data.name}</b>Reach: ${region.data.value}%<span>${region.data.desc}</span>`;
-                    found = true; break;
+                        if (progress < 1) {
+                            requestAnimationFrame(animateValue);
+                        } else {
+                            valueEl.innerText = targetValue + suffix;
+                            rolledPoints.add(pointKey);
+                        }
+                    }
+                    requestAnimationFrame(animateValue);
                 }
             }
-            if (!found) tooltip.style.opacity = '0';
+        };
+
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateDeck();
         }
 
-        document.getElementById('bar-canvas').addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('keydown', (e) => {
-            if (introActive) { if (e.key === "ArrowRight" || e.key === "Enter" || e.key === " ") start(); return; }
-            if (e.key === "ArrowRight") { if (step < totalSteps - 1) step++; render(); }
-            if (e.key === "ArrowLeft") { if (step > 1) step--; render(); }
+
+
+        fsBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
         });
-        draw();
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                if (currentSlide < totalSlides - 1) { currentSlide++; updateDeck(); }
+            } else if (e.key === 'ArrowLeft') {
+                if (currentSlide > 0) { currentSlide--; updateDeck(); }
+            } else if (e.key === 'r' || e.key === 'R') {
+                goToSlide(0);
+            }
+        });
+
+        // Chart Initialization
+        let reachChartBuilt = false;
+        function initReachChart() {
+            if (reachChartBuilt) return;
+            const ctx = document.getElementById('reachChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['WhatsApp', 'Instagram', 'Facebook', 'Snapchat'],
+                    datasets: [{
+                        label: 'Reach (% of Internet Users)',
+                        data: [80.8, 77.9, 67.8, 46.9],
+                        backgroundColor: [
+                            '#25D366',
+                            '#E1306C',
+                            '#1877F2',
+                            '#FFFC00'
+                        ],
+                        borderRadius: 10,
+                        barThickness: 60
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    },
+                    hover: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            enabled: false,
+                            external: (context) => externalTooltipHandler(context, "%")
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                font: { family: 'Outfit', weight: 'bold', size: 12 },
+                                color: '#64748b'
+                            },
+                            grid: { color: 'rgba(226, 232, 240, 0.5)' }
+                        },
+                        x: {
+                            ticks: {
+                                font: { family: 'Outfit', size: 14, weight: 'bold' },
+                                color: '#1e293b'
+                            },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+            reachChartBuilt = true;
+        }
+
+        let growthChartBuilt = false;
+        function initGrowthChart() {
+            if (growthChartBuilt) return;
+            const ctx = document.getElementById('growthChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+                    datasets: [{
+                        label: 'Users (Crores)',
+                        data: [40.0, 44.8, 46.7, 46.7, 46.2, 49.1],
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        borderWidth: 5,
+                        pointRadius: 8,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#2563eb',
+                        pointBorderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    animation: { duration: 2000 },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            enabled: false,
+                            external: (context) => externalTooltipHandler(context, " Cr")
+                        }
+                    },
+                    scales: {
+                        y: {
+                            min: 35,
+                            grid: { color: 'rgba(226, 232, 240, 0.5)' },
+                            ticks: { font: { family: 'Outfit', weight: 'bold' }, color: '#64748b' },
+                            title: { display: true, text: 'Crores', font: { family: 'Outfit', weight: 'bold' } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { family: 'Outfit', weight: 'bold' }, color: '#1e293b' },
+                            title: { display: true, text: 'Year', font: { family: 'Outfit', weight: 'bold' } }
+                        }
+                    }
+                }
+            });
+            growthChartBuilt = true;
+        }
+
+        // Handle Touch Swipes for mobile
+        let touchstartX = 0;
+        let touchendX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchstartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchendX = e.changedTouches[0].screenX;
+            handleGesture();
+        });
+
+        function handleGesture() {
+            if (touchendX < touchstartX - 50) {
+                if (currentSlide < totalSlides - 1) { currentSlide++; updateDeck(); }
+            }
+            if (touchendX > touchstartX + 50) {
+                if (currentSlide > 0) { currentSlide--; updateDeck(); }
+            }
+        }
+
+        // Initial setup
+        window.onload = () => {
+            updateDeck();
+        };
     </script>
 </body>
 
